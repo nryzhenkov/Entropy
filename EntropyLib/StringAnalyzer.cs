@@ -16,12 +16,19 @@ namespace EntropyLib
             int code = 0;
             for(int i = 0; i < str.Length; i++)
             {
-                if (rule.ContainsKey(str[i]))
+                if (!rule.ContainsKey(str[i]))
                 {
                     rule.Add(str[i], Convert.ToString(code, 2));
                     code++;
                 }
             }
         }
+
+        public StringAnalyzer(string str)
+        {
+            MakeRule(str);
+        }
+
+        public StringAnalyzer() { }
     }
 }
