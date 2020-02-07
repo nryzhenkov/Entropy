@@ -10,6 +10,8 @@ namespace EntropyLib
         
         public string ToFormat(char ch)
         {
+            if (!rule.ContainsKey(ch))
+                throw new Exception("Key isn't exist");
             string str = rule[ch];
             string result = "";
             int numberDigits = (int)Math.Ceiling(Math.Log2(rule.Count));
@@ -20,6 +22,11 @@ namespace EntropyLib
             }
             result += str;
             return result;
+        }
+        public static string FromStrToCodeWithRule(string strForEncoding, string strForRule)
+        {
+            StringAnalyzer rule = new StringAnalyzer(strForRule);
+            return rule.FromStrToCode(strForEncoding);
         }
         public string FromStrToCode(string str)
         {
